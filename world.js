@@ -1,33 +1,38 @@
 // Ensure the script runs after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-    // Select the lookup button and result div
+    // Select the lookup button, lookup cities button and result div
     const lookupButton = document.getElementById("lookup");
+    const lookupCitiesButton = document.getElementById("lookup-cities");
     const resultDiv = document.getElementById("result");
 
-    // Add a click event listener to the lookup button
-    lookupButton.addEventListener("click", () => {
-        // Get the value entered in the country input field
+    // Function to fetch data
+    function fetchData(queryParams) {
         const country = document.getElementById("country").value;
+        const url = `world.php?country=${encodeURIComponent(country)}&${queryParams}`;
 
-        // Construct the URL for the AJAX request
-        const url = `world.php?country=${encodeURIComponent(country)}`;
-
-        // Perform the AJAX request using Fetch API
         fetch(url)
             .then(response => {
-                // Check if the response is OK (status 200)
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-                return response.text(); // Parse response as text
+                return response.text();
             })
             .then(data => {
-                // Insert the fetched data into the result div
                 resultDiv.innerHTML = data;
             })
             .catch(error => {
-                // Handle errors and display a message in the result div
                 resultDiv.textContent = `Error: ${error.message}`;
             });
+    }
+
+    // Add event listener for "Lookup" button (countries)
+    lookupButton.addEventListener("click", () => {
+        fetchData("lookup=country");
+    });
+
+    // Add event listener for "Lookup Cities" button
+    lookupCitiesButton.addEventListener("click", () => {
+        fetchData("lookup=cities");
     });
 });
+
