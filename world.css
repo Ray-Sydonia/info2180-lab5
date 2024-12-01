@@ -1,1 +1,133 @@
 /* Add your own styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f7;
+    color: #333;
+    padding: 20px;
+}
+
+
+header {
+    background-color: #4b6cb7;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+#controls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#controls input[type="search"] {
+    padding: 8px;
+    font-size: 16px;
+    margin-right: 10px;
+    width: 250px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}
+
+#controls button {
+    background-color: #4b6cb7;
+    margin-right: 10px; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#controls button:hover {
+    background-color: #3b5490;
+}
+
+#controls button:active {
+    background-color: #2b3f70;
+}
+
+#controls button:focus {
+    outline: none;
+}
+
+/* Table Styles */
+table {
+    width: 80%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #4b6cb7;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Result Section */
+#result {
+    width: 80%;
+    margin-top: 20px;
+}
+
+
+@media screen and (max-width: 768px) {
+    table {
+        width: 100%;
+    }
+
+    #controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #controls input[type="search"] {
+        margin-bottom: 10px;
+    }
+
+    #controls button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
