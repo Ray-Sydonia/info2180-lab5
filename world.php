@@ -24,19 +24,30 @@ try {
   // Fetch results
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  // Output the results
+  // Output the results as an HTML table
   if (!empty($results)) {
-      echo "<ul>";
-      foreach ($results as $row) {
-          echo "<li>" . htmlspecialchars($row['name']) . " - " . htmlspecialchars($row['continent']) . " - " . htmlspecialchars($row['independence_year']) . "</li>";
-      }
-      echo "</ul>";
-  } else {
-      echo "No results found.";
-  }
+    echo "<table border='1'>";
+    echo "<thead>";
+    echo "<tr><th>Country Name</th><th>Continent</th><th>Independence Year</th><th>Head of State</th></tr>";
+    echo "</thead>";
+    echo "<tbody>";
+    foreach ($results as $row) {
+        echo "<tr>";
+        echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['continent']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['independence_year'] ? $row['independence_year'] : 'N/A') . "</td>";
+        echo "<td>" . htmlspecialchars($row['head_of_state'] ? $row['head_of_state'] : 'N/A') . "</td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
+} else {
+    echo "No results found.";
+}
+
 } catch (PDOException $e) {
-  // Handle connection errors
-  echo "Error: " . $e->getMessage();
+// Handle connection errors
+echo "Error: " . $e->getMessage();
 }
 ?>
 
